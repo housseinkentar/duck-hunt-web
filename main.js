@@ -80,13 +80,37 @@ e=>keys[e.key]=true);
 window.addEventListener("keyup",
 e=>keys[e.key]=false);
 
-function move(){
-  const speed=1.5;
+let yaw = 0;
 
-  if(keys["w"]) camera.position.z-=speed;
-  if(keys["s"]) camera.position.z+=speed;
-  if(keys["a"]) camera.position.x-=speed;
-  if(keys["d"]) camera.position.x+=speed;
+window.addEventListener("mousemove",(e)=>{
+  yaw -= e.movementX * 0.002;
+  camera.rotation.y = yaw;
+});
+
+function move(){
+  const speed = 2;
+
+  const forward = new THREE.Vector3();
+  camera.getWorldDirection(forward);
+
+  forward.y = 0;
+  forward.normalize();
+
+  const right =
+  new THREE.Vector3()
+  .crossVectors(forward,new THREE.Vector3(0,1,0));
+
+  if(keys["w"])
+    camera.position.add(forward.clone().multiplyScalar(speed));
+
+  if(keys["s"])
+    camera.position.add(forward.clone().multiplyScalar(-speed));
+
+  if(keys["a"])
+    camera.position.add(right.clone().multiplyScalar(speed));
+
+  if(keys["d"])
+    camera.position.add(right.clone().multiplyScalar(-speed));
 }
 
 function animate(){
