@@ -88,29 +88,13 @@ window.addEventListener("mousemove",(e)=>{
 });
 
 function move(){
-  const speed = 2;
 
-  const forward = new THREE.Vector3();
-  camera.getWorldDirection(forward);
+ camera.position.x +=
+ Math.sin(camera.rotation.y) * touchY * 2;
 
-  forward.y = 0;
-  forward.normalize();
+ camera.position.z +=
+ Math.cos(camera.rotation.y) * touchY * 2;
 
-  const right =
-  new THREE.Vector3()
-  .crossVectors(forward,new THREE.Vector3(0,1,0));
-
-  if(keys["w"])
-    camera.position.add(forward.clone().multiplyScalar(speed));
-
-  if(keys["s"])
-    camera.position.add(forward.clone().multiplyScalar(-speed));
-
-  if(keys["a"])
-    camera.position.add(right.clone().multiplyScalar(speed));
-
-  if(keys["d"])
-    camera.position.add(right.clone().multiplyScalar(-speed));
 }
 
 function animate(){
@@ -120,3 +104,14 @@ function animate(){
 }
 
 animate();
+let touchX=0;
+let touchY=0;
+
+window.addEventListener("touchmove",(e)=>{
+ const t=e.touches[0];
+
+ touchX=(t.clientX/window.innerWidth)-0.5;
+ touchY=(t.clientY/window.innerHeight)-0.5;
+
+ camera.rotation.y=-touchX*3;
+});
