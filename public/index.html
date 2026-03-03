@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Warwar Hunt v2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="hud">
+    <div class="row">
+      <div id="stats">Score: 0 · Misses: 0/12 · Level: 1</div>
+      <div id="ammo">Bullets: 3/3</div>
+    </div>
+
+    <div class="row">
+      <button id="callBtn">Call</button>
+      <button id="reloadBtn">Reload (R)</button>
+      <button id="pauseBtn">Pause</button>
+    </div>
+
+    <div id="hint">
+      Tap/Click to shoot · Call يجذب الطيور · Reload أو زر R · الأفضل على iPhone Safari
+    </div>
+  </div>
+
+  <canvas id="c"></canvas>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
