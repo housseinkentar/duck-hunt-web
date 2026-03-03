@@ -1,20 +1,78 @@
-body{
-  margin:0;
-  overflow:hidden;
-  background:black;
+html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+canvas{display:block;width:100vw;height:100vh;touch-action:none}
+
+#hud{
+  position:fixed; inset:10px 10px auto 10px; z-index:20;
+  color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.6);
+  pointer-events:none;
+}
+#topbar{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px}
+#status,#ammo,#hint{
+  background:rgba(0,0,0,.35);
+  backdrop-filter: blur(6px);
+  border-radius:12px;
+  padding:8px 10px;
+}
+#actions{
+  display:flex; gap:8px; margin:10px 0;
+  pointer-events:auto;
+}
+button{
+  border:0;border-radius:12px;padding:10px 12px;
+  font-weight:900;background:rgba(255,255,255,.92);
+}
+button:active{transform:scale(.98)}
+
+#windBox{
+  display:flex; align-items:center; gap:10px;
+  width:max-content;
+  background:rgba(0,0,0,.35);
+  border-radius:12px;
+  padding:8px 10px;
+}
+#windArrow{
+  width:18px; height:18px;
+  border-right:3px solid rgba(255,255,255,.9);
+  border-top:3px solid rgba(255,255,255,.9);
+  transform:rotate(45deg);
+}
+#windTxt{font-weight:900}
+
+#crosshair{
+  position:fixed; left:50%; top:50%;
+  width:18px; height:18px; transform:translate(-50%,-50%);
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:50%;
+  z-index:15; pointer-events:none;
+}
+#crosshair::after{
+  content:""; position:absolute; left:50%; top:50%;
+  width:4px;height:4px; background:rgba(255,255,255,.9);
+  border-radius:50%; transform:translate(-50%,-50%);
 }
 
-canvas{
-  width:100vw;
-  height:100vh;
-  display:block;
+/* Joysticks */
+.joy{
+  position:fixed; bottom:18px; width:170px; height:170px;
+  z-index:18; opacity:.95; pointer-events:none;
 }
-#joystick{
- position:fixed;
- bottom:40px;
- left:40px;
- width:120px;
- height:120px;
- border-radius:50%;
- background:rgba(255,255,255,0.2);
+#joyL{left:14px}
+#joyR{right:14px}
+
+.base{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:150px; height:150px; border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:2px solid rgba(255,255,255,.18);
+}
+.knob{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:70px; height:70px; border-radius:999px;
+  background:rgba(255,255,255,.24);
+  border:2px solid rgba(255,255,255,.25);
+}
+.label{
+  position:absolute; left:50%; top:50%;
+  transform:translate(-50%,62px);
+  font-weight:900; font-size:12px; color:rgba(255,255,255,.75);
 }
