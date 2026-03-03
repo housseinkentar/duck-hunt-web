@@ -18,7 +18,8 @@ window.innerWidth/window.innerHeight,
 5000
 );
 
-camera.position.set(0,20,50);
+camera.position.set(0,120,200);
+camera.lookAt(0,0,0);
 
 // =================
 // Renderer
