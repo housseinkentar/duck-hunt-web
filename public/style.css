@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: black;
+  font-family: Arial;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+#hud {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  color: white;
+  z-index: 10;
+}
+
+button {
+  padding: 8px;
+  margin: 4px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+}
